@@ -6,7 +6,7 @@ angular.module('angularPayments')
     var defaultInputFormat = /(?:^|\s)(\d{4})$/;
 
     var cards = {
-      discover: {
+        DISCV: {
         type: 'discover',
         pattern: /^(6011|65|64[4-9]|622)/,
         format: defaultFormat,
@@ -15,7 +15,7 @@ angular.module('angularPayments')
         cvcLength: [3],
         luhn: true
       },
-      mastercard: {
+      MCARD: {
         type: 'mastercard',
         pattern: /^5[1-5]/,
         format: defaultFormat,
@@ -24,7 +24,7 @@ angular.module('angularPayments')
         cvcLength: [3],
         luhn: true
       },
-      amex: {
+      AMEX: {
         type: 'amex',
         pattern: /^3[47]/,
         format: /(\d{1,4})(\d{1,6})?(\d{1,5})?/,
@@ -33,7 +33,7 @@ angular.module('angularPayments')
         cvcLength: [3, 4],
         luhn: true
       },
-      visa: {
+      VISA: {
         type: 'visa',
         pattern: /^4/,
         format: defaultFormat,
@@ -49,7 +49,9 @@ angular.module('angularPayments')
       setCards: function(cardTypes) {
         this.cards = [];
         for (var i = 0; i < cardTypes.length; i++) {
-            this.cards.push(cards[cardTypes[i]]);
+            if (cardTypes[i] in cards) {
+                this.cards.push(cards[cardTypes[i]]);    
+            }
         }
       },
       fromNumber: function(num){
