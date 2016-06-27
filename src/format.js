@@ -190,7 +190,11 @@ angular.module('angularPayments')
 
     if(e.charCode == 0) return;
 
-    if (!/^\d+$/.test(digit) && !e.meta && e.keyCode >= 46) {
+    if (e.keyCode == 46 || e.keyCode == 8||(e.keyCode >=37 && e.keyCode <=40)) {
+        return;
+    }
+
+    if (!/^\d+$/.test(digit) && !e.meta && e.which >= 46) {
       e.preventDefault();
       return;
     }
