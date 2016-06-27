@@ -183,14 +183,17 @@ angular.module('angularPayments')
   _formatCVC = function(e){
     $target = angular.element(e.currentTarget);
     digit = String.fromCharCode(e.which);
+    
+    function isSystemKey(code) {
+        return code === 8 || code === 0 || code === 13
+    }
+    console.log(e);
 
-    if(e.which === 8) {
-        return;
+    if (isSystemKey(e.which) || e.metaKey) {
+        return
     }
 
-    if(e.charCode == 0) return;
-
-    if (e.keyCode == 46 || e.keyCode == 8||(e.keyCode >=37 && e.keyCode <=40)) {
+    if (e.which === 8 || e.which === 0){
         return;
     }
 
