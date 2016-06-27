@@ -36,6 +36,8 @@ angular.module('angularPayments')
           return;
       }
 
+      if(e.charCode == 0) return;
+
       if (card) {
         upperLength = card.length[card.length.length - 1];
       }
@@ -185,6 +187,8 @@ angular.module('angularPayments')
     if(e.which === 8) {
         return;
     }
+
+    if(e.charCode == 0) return;
 
     if (!/^\d+$/.test(digit) && !e.meta && e.keyCode >= 46) {
       e.preventDefault();
