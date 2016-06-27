@@ -32,11 +32,9 @@ angular.module('angularPayments')
 
       upperLength = 16;
 
-      if(e.which === 8) {
+      if(e.which === 8 || e.which === 0) {
           return;
       }
-
-      if(e.charCode == 0) return;
 
       if (card) {
         upperLength = card.length[card.length.length - 1];
@@ -184,11 +182,13 @@ angular.module('angularPayments')
     $target = angular.element(e.currentTarget);
     digit = String.fromCharCode(e.which);
 
-    if(e.which === 8) {
-        return;
+    function isSystemKey(code) {
+        return code === 8 || code === 0 || code === 13;
     }
 
-    if(e.charCode == 0) return;
+    if (isSystemKey(e.which) || e.metaKey) {
+        return;
+    }
 
     if (!/^\d+$/.test(digit) && !e.meta && e.keyCode >= 46) {
       e.preventDefault();
