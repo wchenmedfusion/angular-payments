@@ -32,6 +32,10 @@ angular.module('angularPayments')
 
       upperLength = 16;
 
+      if(e.which === 8) {
+          return;
+      }
+
       if (card) {
         upperLength = card.length[card.length.length - 1];
       }
@@ -40,7 +44,7 @@ angular.module('angularPayments')
         return;
       }
 
-      if (!/^\d+$/.test(digit) && !e.meta && e.keyCode >= 46) {
+      if (!/^\d+$/.test(digit) && !e.meta && e.which >= 46) {
         e.preventDefault();
         return;
       }
@@ -177,6 +181,10 @@ angular.module('angularPayments')
   _formatCVC = function(e){
     $target = angular.element(e.currentTarget);
     digit = String.fromCharCode(e.which);
+
+    if(e.which === 8) {
+        return;
+    }
 
     if (!/^\d+$/.test(digit) && !e.meta && e.keyCode >= 46) {
       e.preventDefault();
