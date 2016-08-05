@@ -17,7 +17,7 @@ angular.module('angularPayments')
       },
       MCARD: {
         type: 'mastercard',
-        pattern: /^(5[1-5]|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/,
+        pattern: /^5[1-5]|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/,
         format: defaultFormat,
         inputFormat: defaultInputFormat,
         length: [16],
